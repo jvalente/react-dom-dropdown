@@ -1,7 +1,7 @@
 {
-    "name": "react-dropdown-menu",
-    "version": "0.0.1",
-    "description": "React-dropdown-menu allows you to display / hide content by clicking on a trigger like a menu entry or an icon.",
+    "name": "react-dom-dropdown",
+    "version": "0.0.2",
+    "description": "react-dom-dropdown allows you to display / hide content by clicking on a trigger like a menu entry or an icon.",
     "main": "lib/Dropdown.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com/jvalente/react-dropdown-menu.git"
+        "url": "git+ssh://git@github.com/jvalente/react-dom-dropdown.git"
     },
     "keywords": [
         "react",
@@ -22,15 +22,15 @@
     "author": "João Valente <joao@doist.io> (http://doist.io)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/jvalente/react-dropdown-menu/issues"
+        "url": "https://github.com/jvalente/react-dom-dropdown/issues"
     },
-    "homepage": "https://github.com/jvalente/react-dropdown-menu#readme",
+    "homepage": "https://github.com/jvalente/react-dom-dropdown#readme",
     "dependencies": {
         "classnames": "^2.2.5"
     },
     "peerDependencies": {
-        "react": "^15.0.2",
-        "react-dom": "^15.0.2"
+        "react": "^0.14 || ^15.0",
+        "react-dom": "^0.14 || ^15.0"
     },
     "devDependencies": {
         "babel-cli": "^6.8.0",
