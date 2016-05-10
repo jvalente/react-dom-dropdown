@@ -143,7 +143,7 @@ class Body extends React.Component {
             style.bottom = TRIGGER_SIZE;
         }
 
-        if (this.props.top) {
+        if (this.props.right) {
             style.right = 'auto';
             style.left = 0;
         }
