@@ -44,9 +44,7 @@ class Dropdown extends React.Component {
                 const total_offset = dropdown_offset - scroll_offset;
                 const height = scrolling_parent.clientHeight;
 
-                if (height - total_offset < SCROLL_LIMIT) {
-                    top = true;
-                }
+                top = (height - total_offset < SCROLL_LIMIT);
             }
         }
 

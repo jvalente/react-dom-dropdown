@@ -20453,9 +20453,7 @@
 	                    var total_offset = dropdown_offset - scroll_offset;
 	                    var height = scrolling_parent.clientHeight;
 
-	                    if (height - total_offset < SCROLL_LIMIT) {
-	                        top = true;
-	                    }
+	                    top = height - total_offset < SCROLL_LIMIT;
 	                }
 	            }
 
