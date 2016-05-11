@@ -183,6 +183,67 @@
 	                        null,
 	                        _react2.default.createElement(DummyBody, null)
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'h3',
+	                    null,
+	                    'Auto vertical position based on scroll state'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'scroll' },
+	                    _react2.default.createElement(
+	                        _reactDropdownMenu.Dropdown,
+	                        { scrolling_parent: 'scroll' },
+	                        _react2.default.createElement(
+	                            _reactDropdownMenu.Trigger,
+	                            null,
+	                            _react2.default.createElement(DummyTrigger, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactDropdownMenu.Body,
+	                            null,
+	                            _react2.default.createElement(DummyBody, null)
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactDropdownMenu.Dropdown,
+	                        { scrolling_parent: 'scroll' },
+	                        _react2.default.createElement(
+	                            _reactDropdownMenu.Trigger,
+	                            null,
+	                            _react2.default.createElement(DummyTrigger, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactDropdownMenu.Body,
+	                            null,
+	                            _react2.default.createElement(DummyBody, null)
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactDropdownMenu.Dropdown,
+	                        { scrolling_parent: 'scroll' },
+	                        _react2.default.createElement(
+	                            _reactDropdownMenu.Trigger,
+	                            null,
+	                            _react2.default.createElement(DummyTrigger, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactDropdownMenu.Body,
+	                            null,
+	                            _react2.default.createElement(DummyBody, null)
+	                        )
+	                    )
 	                )
 	            );
 	        }
@@ -20342,7 +20403,6 @@
 	}
 
 	var SCROLL_LIMIT = 100;
-	var TRIGGER_SIZE = 30;
 
 	var Dropdown = function (_React$Component) {
 	    _inherits(Dropdown, _React$Component);
@@ -20384,6 +20444,7 @@
 	            var top = this.state.top;
 
 	            if (event) {
+	                // NOTE: for this to work, offsetParent has to be relatively positioned
 	                var dropdown_offset = _reactDom2.default.findDOMNode(this).offsetTop;
 	                var scrolling_parent = document.getElementById(this.state.scrolling_parent);
 
@@ -20423,13 +20484,14 @@
 	        key: '_getBodyComponent',
 	        value: function _getBodyComponent() {
 	            var _body = this.props.children[1];
+	            var style = { position: 'relative' };
 	            var props = {
-	                top: this.props.top,
-	                right: this.props.right
+	                top: this.state.top,
+	                right: this.state.right
 	            };
 
 	            if (this.state.show_body) {
-	                return _react2.default.cloneElement(_body, props);
+	                return _react2.default.createElement('div', { className: 'body_wrapper', style: style }, _react2.default.cloneElement(_body, props));
 	            }
 
 	            return false;
@@ -20438,7 +20500,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var class_name = 'dropdown';
-	            var style = { position: 'relative', display: 'inline-block' };
+	            var style = { display: 'inline-block' };
 	            if (this.props.className) class_name += ' ' + this.props.className;
 
 	            return _react2.default.createElement('div', { style: style, className: class_name }, this.state.top && this._getBodyComponent(), this._getTriggerComponent(), !this.state.top && this._getBodyComponent());
@@ -20476,9 +20538,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var style = {
-	                display: 'block',
-	                width: TRIGGER_SIZE,
-	                height: TRIGGER_SIZE
+	                display: 'block'
 	            };
 
 	            return _react2.default.createElement('a', { href: '#', style: style, className: 'trigger', onClick: this._onClick }, this.props.children);
@@ -20503,15 +20563,15 @@
 	            var style = {
 	                position: 'absolute',
 	                right: 0,
-	                top: TRIGGER_SIZE
+	                top: 0
 	            };
 
 	            if (this.props.top) {
 	                style.top = 'auto';
-	                style.bottom = TRIGGER_SIZE;
+	                style.bottom = 0;
 	            }
 
-	            if (this.props.top) {
+	            if (this.props.right) {
 	                style.right = 'auto';
 	                style.left = 0;
 	            }
