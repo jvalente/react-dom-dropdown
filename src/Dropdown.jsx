@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const SCROLL_LIMIT = 100;
-const TRIGGER_SIZE = 30;
 
 class Dropdown extends React.Component {
     constructor(props, context) {
@@ -36,6 +35,7 @@ class Dropdown extends React.Component {
         let top = this.state.top;
 
         if (event) {
+            // NOTE: for this to work, offsetParent has to be relatively positioned
             const dropdown_offset = ReactDOM.findDOMNode(this).offsetTop;
             const scrolling_parent = document.getElementById(this.state.scrolling_parent);
 
@@ -71,13 +71,18 @@ class Dropdown extends React.Component {
 
     _getBodyComponent() {
         let _body = this.props.children[1];
+        let style = { position:'relative' };
         let props = {
-            top: this.props.top,
-            right: this.props.right
+            top: this.state.top,
+            right: this.state.right
         };
 
         if (this.state.show_body) {
-            return React.cloneElement(_body, props);
+            return (
+                <div className='body_wrapper' style={ style }>
+                    { React.cloneElement(_body, props) }
+                </div>
+            );
         }
 
         return false;
@@ -85,7 +90,7 @@ class Dropdown extends React.Component {
 
     render() {
         let class_name = 'dropdown';
-        let style = { position:'relative', display: 'inline-block' };
+        let style = { display: 'inline-block' };
         if (this.props.className) class_name += ` ${this.props.className}`;
 
         return (
@@ -117,9 +122,7 @@ class Trigger extends React.Component {
 
     render() {
         const style = {
-            display: 'block',
-            width: TRIGGER_SIZE,
-            height: TRIGGER_SIZE
+            display: 'block'
         }
 
         return (
@@ -135,12 +138,12 @@ class Body extends React.Component {
         let style = {
             position: 'absolute',
             right: 0,
-            top: TRIGGER_SIZE
+            top: 0
         }
 
         if (this.props.top) {
             style.top = 'auto';
-            style.bottom = TRIGGER_SIZE;
+            style.bottom = 0;
         }
 
         if (this.props.right) {
