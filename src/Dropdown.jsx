@@ -16,6 +16,15 @@ class Dropdown extends React.Component {
 
         this._toggleShowBody = this._toggleShowBody.bind(this);
         this._handleClickOutside = this._handleClickOutside.bind(this);
+
+        this._timeout = null;
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this._handleClickOutside, true);
+        if (this._timeout) {
+            clearTimeout(this._timeout);
+        }
     }
 
     _handleClickOutside(event) {
@@ -23,7 +32,7 @@ class Dropdown extends React.Component {
         if(!dropdown_dom_node.contains(event.target))
             this._toggleShowBody();
         else {
-            setTimeout(() => {
+            this._timeout = setTimeout(() => {
                 if(this.state.show_body) {
                     this._toggleShowBody();
                 }
