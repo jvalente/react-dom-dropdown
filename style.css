@@ -1,0 +1,39 @@
+.with_arrow:after,
+.with_arrow:before {
+    z-index: 1;
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.with_arrow:after {
+    right: 10px;
+    top: -9px;
+    border-color: transparent transparent #fff transparent;
+    border-width: 10px;
+}
+
+.with_arrow:before {
+    right: 10px;
+    top: -10px;
+    border-color: transparent transparent #ECECEC transparent;
+    border-width: 10px;
+}
+
+
+.with_arrow.top:after {
+    right: 10px;
+    top: -11px;
+    border-color: #fff transparent transparent transparent;
+    border-width: 10px;
+}
+
+.with_arrow.top:before {
+    right: 10px;
+    top: -9px;
+    border-color: #ECECEC transparent transparent transparent;
+    border-width: 10px;
+}

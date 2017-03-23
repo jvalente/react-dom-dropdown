@@ -1,3 +1,4 @@
+import '../style.css';
 import classNames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -77,16 +78,21 @@ class Dropdown extends React.Component {
     }
 
     _getBodyComponent() {
-        let _body = this.props.children[1];
-        let style = { position:'relative' };
-        let props = {
-            top: this.state.top,
-            right: this.state.right
-        };
+        const _body = this.props.children[1];
+        const style = { position:'relative' };
+        const { right, top } = this.state;
+        const props = { top, right };
+
+        const class_name = classNames({
+            body_wrapper: true,
+            with_arrow: true,
+            top: top,
+            bottom: !top
+        })
 
         if (this.state.show_body) {
             return (
-                <div className='body_wrapper' style={ style }>
+                <div className={ class_name } style={ style }>
                     { React.cloneElement(_body, props) }
                 </div>
             );
@@ -145,12 +151,12 @@ class Body extends React.Component {
         let style = {
             position: 'absolute',
             right: 0,
-            top: 0
+            top: 10
         }
 
         if (this.props.top) {
             style.top = 'auto';
-            style.bottom = 0;
+            style.bottom = 10;
         }
 
         if (this.props.right) {
