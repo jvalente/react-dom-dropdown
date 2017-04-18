@@ -116,11 +116,6 @@ class Dropdown extends React.Component {
     }
 }
 
-Dropdown.propTypes = {
-    top: React.PropTypes.bool,
-    children: React.PropTypes.array.isRequired
-}
-
 class Trigger extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -139,9 +134,9 @@ class Trigger extends React.Component {
         }
 
         return (
-            <a href='#' style={ style } className='trigger' onClick={ this._onClick } >
+            <div style={ style } className='trigger' onClick={ this._onClick } >
                 { this.props.children }
-            </a>
+            </div>
         );
     }
 }
