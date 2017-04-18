@@ -151,12 +151,12 @@ class Body extends React.Component {
         let style = {
             position: 'absolute',
             right: 0,
-            top: 10
+            top: 0
         }
 
         if (this.props.top) {
             style.top = 'auto';
-            style.bottom = 10;
+            style.bottom = 0;
         }
 
         if (this.props.right) {
